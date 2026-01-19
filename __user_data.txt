@@ -5,12 +5,12 @@
             "content": "ssss",
             "type": "info",
             "freq": "once",
-            "time": "2026-01-19T20:07:29.506070",
+            "time": "2026-01-19T20:21:40.216963",
             "repeat_min": 1,
             "active": false,
             "created_at": "2026-01-19T16:41:07.640874",
-            "updated_at": "2026-01-19T20:06:29.506070",
-            "last_triggered": "2026-01-19T20:07:32.099965"
+            "updated_at": "2026-01-19T20:20:40.216963",
+            "last_triggered": "2026-01-19T20:21:42.763761"
         },
         {
             "title": "Nghỉ mắt!!!",
@@ -22,7 +22,7 @@
             "active": true,
             "created_at": "2026-01-19T18:48:18.274895",
             "updated_at": "2026-01-19T20:06:30.262446",
-            "last_triggered": "2026-01-19T19:50:53.154819"
+            "last_triggered": "2026-01-19T20:11:02.288611"
         },
         {
             "title": "ok\t\ngoôd",
@@ -75,6 +75,19 @@
             "created_at": "2026-01-19T19:32:06.333947",
             "updated_at": "2026-01-19T20:06:26.738403",
             "last_triggered": "2026-01-19T20:07:32.099965"
+        },
+        {
+            "title": "ok",
+            "content": "áđấ",
+            "type": "info",
+            "icon": "⏰",
+            "freq": "once",
+            "time": "2026-01-19T20:22:28.064000",
+            "repeat_min": 1,
+            "active": true,
+            "created_at": "2026-01-19T20:21:35.827587",
+            "updated_at": "2026-01-19T20:21:35.827587",
+            "last_triggered": null
         }
     ],
     "settings": {

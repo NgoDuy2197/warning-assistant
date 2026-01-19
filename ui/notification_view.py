@@ -36,10 +36,10 @@ class NotificationPopup(QWidget):
         if use_custom_icon:
             icon_label = QLabel(icon)
             icon_label.setStyleSheet("font-size: 32px;")
-        elif os.path.exists(icon_path):
-            icon_label = QLabel()
-            pixmap = QIcon(icon_path).pixmap(32, 32)
-            icon_label.setPixmap(pixmap)
+        # elif os.path.exists(icon_path):
+        #     icon_label = QLabel()
+        #     pixmap = QIcon(icon_path).pixmap(32, 32)
+        #     icon_label.setPixmap(pixmap)
         else:
             icons = {"danger": "🚨", "important": "🔥", "warning": "⚠️", "info": "ℹ️"}
             icon_label = QLabel(icons.get(notif_type, "ℹ️"))
