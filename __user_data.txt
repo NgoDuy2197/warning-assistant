@@ -1,0 +1,9 @@
+{
+    "notifications": [],
+    "settings": {
+        "theme": "default",
+        "language": "vi_VN",
+        "autostart": true,
+        "shortcut": "Ctrl+Shift+C"
+    }
+}
