@@ -5,12 +5,12 @@
             "content": "ssss",
             "type": "info",
             "freq": "once",
-            "time": "2026-01-19T16:41:05.216000",
+            "time": "2026-01-19T20:07:29.506070",
             "repeat_min": 1,
-            "active": true,
+            "active": false,
             "created_at": "2026-01-19T16:41:07.640874",
-            "updated_at": "2026-01-19T19:32:09.855995",
-            "last_triggered": "2026-01-19T16:41:07.972715"
+            "updated_at": "2026-01-19T20:06:29.506070",
+            "last_triggered": "2026-01-19T20:07:32.099965"
         },
         {
             "title": "Nghỉ mắt!!!",
@@ -21,8 +21,8 @@
             "repeat_min": 20,
             "active": true,
             "created_at": "2026-01-19T18:48:18.274895",
-            "updated_at": "2026-01-19T18:48:18.274895",
-            "last_triggered": "2026-01-19T19:30:48.285132"
+            "updated_at": "2026-01-19T20:06:30.262446",
+            "last_triggered": "2026-01-19T19:50:53.154819"
         },
         {
             "title": "ok\t\ngoôd",
@@ -30,12 +30,12 @@
             "type": "info",
             "icon": "DEFAULT",
             "freq": "once",
-            "time": "2026-01-19T19:47:53.975000",
+            "time": "2026-01-19T20:07:09.079614",
             "repeat_min": 1,
             "active": false,
             "created_at": "2026-01-19T19:22:04.869531",
-            "updated_at": "2026-01-19T19:47:58.429780",
-            "last_triggered": "2026-01-19T19:48:05.517599"
+            "updated_at": "2026-01-19T20:06:09.079614",
+            "last_triggered": "2026-01-19T20:07:12.097932"
         },
         {
             "title": "Đi đón con",
@@ -43,12 +43,12 @@
             "type": "danger",
             "icon": "📅",
             "freq": "once",
-            "time": "2026-01-19T19:23:13.113000",
+            "time": "2026-01-19T20:07:27.676675",
             "repeat_min": 1,
-            "active": true,
+            "active": false,
             "created_at": "2026-01-19T19:22:28.308363",
-            "updated_at": "2026-01-19T19:47:45.079408",
-            "last_triggered": "2026-01-19T19:31:18.286811"
+            "updated_at": "2026-01-19T20:06:27.676675",
+            "last_triggered": "2026-01-19T20:07:32.099965"
         },
         {
             "title": "careful",
@@ -56,12 +56,12 @@
             "type": "info",
             "icon": "💪",
             "freq": "once",
-            "time": "2026-01-19T19:31:40.680000",
+            "time": "2026-01-19T20:07:28.841447",
             "repeat_min": 1,
-            "active": true,
+            "active": false,
             "created_at": "2026-01-19T19:31:08.891048",
-            "updated_at": "2026-01-19T19:47:43.691728",
-            "last_triggered": "2026-01-19T19:31:48.284785"
+            "updated_at": "2026-01-19T20:06:28.841447",
+            "last_triggered": "2026-01-19T20:07:32.099965"
         },
         {
             "title": "ccc",
@@ -69,12 +69,12 @@
             "type": "info",
             "icon": "DEFAULT",
             "freq": "once",
-            "time": "2026-01-19T19:33:01.861000",
+            "time": "2026-01-19T20:07:26.738403",
             "repeat_min": 1,
-            "active": true,
+            "active": false,
             "created_at": "2026-01-19T19:32:06.333947",
-            "updated_at": "2026-01-19T19:46:10.013520",
-            "last_triggered": "2026-01-19T19:33:08.298466"
+            "updated_at": "2026-01-19T20:06:26.738403",
+            "last_triggered": "2026-01-19T20:07:32.099965"
         }
     ],
     "settings": {

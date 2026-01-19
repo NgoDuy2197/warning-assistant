@@ -11,7 +11,7 @@ import shutil
 from i18n.translator import translator
 from services.autostart_service import AutostartService
 import ui.styles as styles
-from datetime import datetime
+from datetime import datetime, timedelta
 import os
 import random
 
@@ -662,6 +662,14 @@ class MainWindow(QMainWindow):
         notif = notifs[index]
         notif['active'] = not notif['active']
         notif['updated_at'] = datetime.now().isoformat()
+        
+        # If enabling a "once" task, auto-set time to now + 1 minute
+        if notif['active'] and notif.get('freq') == 'once':
+            new_time = datetime.now() + timedelta(minutes=1)
+            notif['time'] = new_time.isoformat()
+            # Also reset triggered state so it runs again
+            notif['last_triggered'] = None
+            
         self.settings_manager.update_notification(index, notif)
         self.load_notification_list()
 
