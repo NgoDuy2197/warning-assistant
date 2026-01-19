@@ -60,7 +60,7 @@ class AddNotifDialog(QDialog):
         self.time_stack_layout = QVBoxLayout(self.time_stack)
         self.time_stack_layout.setContentsMargins(0, 0, 0, 0)
         
-        self.datetime_picker = QDateTimeEdit(QDateTime.currentDateTime())
+        self.datetime_picker = QDateTimeEdit(QDateTime.currentDateTime().addSecs(60))
         self.datetime_picker.setCalendarPopup(True)
         self.datetime_picker.setDisplayFormat(translator.t("date_display_format"))
         self.time_stack_layout.addWidget(self.datetime_picker)
