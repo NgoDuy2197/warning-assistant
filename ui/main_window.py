@@ -13,6 +13,7 @@ from services.autostart_service import AutostartService
 import ui.styles as styles
 from datetime import datetime, timedelta
 import os
+import sys
 import random
 
 class AddNotifDialog(QDialog):
@@ -213,7 +214,7 @@ class MainWindow(QMainWindow):
         self.request_open_add_dialog.connect(self.add_notification)
         
         # Set Window Icon
-        self.logo_path = os.path.join(os.path.dirname(__file__), "images", "logo.ico")
+        self.logo_path = self.get_resource_path("ui/images/logo.ico")
         if os.path.exists(self.logo_path):
             self.setWindowIcon(QIcon(self.logo_path))
         
@@ -221,6 +222,12 @@ class MainWindow(QMainWindow):
         self.init_ui()
         self.setup_global_shortcuts()
         self.apply_theme()
+
+    def get_resource_path(self, relative_path):
+        """ Get absolute path to resource, works for dev and for PyInstaller """
+        if hasattr(sys, '_MEIPASS'):
+            return os.path.join(sys._MEIPASS, relative_path)
+        return os.path.join(os.path.abspath("."), relative_path)
 
     def init_tray(self):
         self.tray_icon = QSystemTrayIcon(self)

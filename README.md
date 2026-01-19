@@ -35,8 +35,9 @@ python main.py
 Để đóng gói ứng dụng thành một file `.exe` duy nhất, chạy lệnh sau:
 
 ```bash
-pyinstaller --noconsole --onefile --windowed --name "WarningAssistant" --add-data "i18n;i18n" main.py
+pyinstaller --noconsole --onefile --windowed --name "Assistant" --add-data "i18n;i18n" main.py
 ```
+pyinstaller --noconsole --onefile --windowed --name "Assistant" --icon "ui/images/logo.ico" --add-data "i18n;i18n" --add-data "ui/images;ui/images" main.py
 
 *Lưu ý: Sau khi build, file .exe sẽ nằm trong thư mục `dist`. Hãy copy thư mục `i18n` vào cùng cấp với file .exe nếu bạn không dùng tham số `--add-data` đúng cách.*
 
@@ -69,4 +70,4 @@ Ví dụ nội dung file:
 # TODO LIST
 - [ ] Pick date đẹp hơn
 - [ ] Nút điều chỉnh thời gian
-- [ ] Chỉnh global shortcut
+- [v] Chỉnh global shortcut

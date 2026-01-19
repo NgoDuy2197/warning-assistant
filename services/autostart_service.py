@@ -3,7 +3,7 @@ import os
 import winreg
 
 class AutostartService:
-    APP_NAME = "WarningAssistant"
+    APP_NAME = "Assistant"
     REG_PATH = r"Software\Microsoft\Windows\CurrentVersion\Run"
 
     @staticmethod

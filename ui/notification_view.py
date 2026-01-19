@@ -4,6 +4,7 @@ from PyQt6.QtCore import Qt, QTimer, QPropertyAnimation, QEasingCurve
 from PyQt6.QtGui import QColor, QIcon
 import ui.styles as styles
 import os
+import sys
 
 class NotificationPopup(QWidget):
     def __init__(self, title, content, notif_type="info", icon=None):
@@ -28,7 +29,12 @@ class NotificationPopup(QWidget):
         
         # Header (Icon + Title)
         header_layout = QHBoxLayout()
-        icon_path = os.path.join(os.path.dirname(__file__), "images", "logo.png")
+        
+        # Resolve icon path for Dev and PyInstaller
+        if hasattr(sys, '_MEIPASS'):
+             icon_path = os.path.join(sys._MEIPASS, "ui/images/logo.png")
+        else:
+             icon_path = os.path.join(os.path.dirname(__file__), "images", "logo.png")
         
         # Priority: Custom Icon > Logo File > Default Type Icon
         use_custom_icon = icon and icon != "DEFAULT"

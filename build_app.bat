@@ -1,0 +1,1 @@
+pyinstaller --clean --noconsole --onefile --windowed --name "Assistant" --icon "ui/images/logo.ico" --add-data "i18n;i18n" --add-data "ui/images;ui/images" main.py

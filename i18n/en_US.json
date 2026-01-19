@@ -1,5 +1,5 @@
 {
-    "app_title": "Warning Assistant",
+    "app_title": "Assistant",
     "msg_error": "Error",
     "error_title_length": "Title must be 125 characters or less.",
     "error_title_lines": "Title must have no more than 3 new lines (4 lines total).",

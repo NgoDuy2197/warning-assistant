@@ -1,5 +1,5 @@
 {
-    "app_title": "Warning Assistant",
+    "app_title": "Assistant",
     "msg_error": "Lỗi",
     "error_title_length": "Tiêu đề không được quá 125 ký tự.",
     "error_title_lines": "Tiêu đề không được quá 3 dấu xuống dòng (tối đa 4 dòng).",
