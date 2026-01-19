@@ -64,3 +64,9 @@ Ví dụ nội dung file:
     }
 }
 ```
+
+
+# TODO LIST
+- [ ] Pick date đẹp hơn
+- [ ] Nút điều chỉnh thời gian
+- [ ] Chỉnh global shortcut

@@ -104,7 +104,7 @@ class AddNotifDialog(QDialog):
         btn_layout.addWidget(cancel_btn)
         btn_layout.addWidget(save_btn)
         btn_layout.addSpacing(5)
-        
+
         layout.addLayout(btn_layout)
 
         if initial_data:
@@ -360,11 +360,13 @@ class MainWindow(QMainWindow):
         btn_container = QHBoxLayout()
         
         self.btn_import = QPushButton(translator.t("btn_import"))
+        self.btn_import.setCursor(Qt.CursorShape.PointingHandCursor)
         self.btn_import.setStyleSheet("background-color: #64748B; color: white; padding: 10px; border-radius: 5px;")
         self.btn_import.clicked.connect(self.import_data)
         
         self.btn_backup = QPushButton(translator.t("btn_backup"))
-        self.btn_backup.setStyleSheet("background-color: #64748B; color: white; padding: 10px; border-radius: 5px;")
+        self.btn_backup.setCursor(Qt.CursorShape.PointingHandCursor)
+        self.btn_backup.setStyleSheet("background-color: #0EA5E9; color: #FFFFFF; padding: 10px; border-radius: 5px;")
         self.btn_backup.clicked.connect(self.backup_data)
         
         btn_container.addWidget(self.btn_import)
