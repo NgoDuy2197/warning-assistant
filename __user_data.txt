@@ -11,12 +11,48 @@
             "created_at": "2026-01-19T16:41:07.640874",
             "updated_at": "2026-01-19T16:41:07.640874",
             "last_triggered": "2026-01-19T16:41:07.972715"
+        },
+        {
+            "title": "Nghỉ mắt!!!",
+            "content": "Nghỉ mắt, nhìn xa 20m trong 20s....",
+            "type": "info",
+            "freq": "repeat",
+            "time": "",
+            "repeat_min": 20,
+            "active": true,
+            "created_at": "2026-01-19T18:48:18.274895",
+            "updated_at": "2026-01-19T18:48:18.274895",
+            "last_triggered": "2026-01-19T19:09:12.917181"
+        },
+        {
+            "title": "ok\t\ngoôd",
+            "content": "ok em yêu",
+            "type": "info",
+            "freq": "once",
+            "time": "2026-01-19T19:21:53.975000",
+            "repeat_min": 1,
+            "active": false,
+            "created_at": "2026-01-19T19:22:04.869531",
+            "updated_at": "2026-01-19T19:22:04.869531",
+            "last_triggered": "2026-01-19T19:22:05.775462"
+        },
+        {
+            "title": "Đi đón con",
+            "content": "Đi đón con",
+            "type": "danger",
+            "freq": "once",
+            "time": "2026-01-19T19:23:13.113000",
+            "repeat_min": 1,
+            "active": true,
+            "created_at": "2026-01-19T19:22:28.308363",
+            "updated_at": "2026-01-19T19:22:28.308363",
+            "last_triggered": null
         }
     ],
     "settings": {
         "theme": "default",
         "language": "vi_VN",
         "autostart": true,
-        "shortcut": "Ctrl+Shift+C"
+        "shortcut": "Alt+K"
     }
 }

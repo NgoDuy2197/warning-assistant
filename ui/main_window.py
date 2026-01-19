@@ -4,7 +4,8 @@ from PyQt6.QtWidgets import (QMainWindow, QWidget, QVBoxLayout, QHBoxLayout,
                              QTextEdit, QDateTimeEdit, QSpinBox, QTimeEdit, 
                              QSystemTrayIcon, QMenu, QApplication, QMessageBox,
                              QKeySequenceEdit, QFileDialog)
-from PyQt6.QtCore import Qt, QDateTime, QSize, QTimer
+from PyQt6.QtCore import Qt, QDateTime, QSize, QTimer, pyqtSignal
+import keyboard
 from PyQt6.QtGui import QIcon, QAction, QKeySequence, QShortcut
 import shutil
 from i18n.translator import translator
@@ -180,6 +181,9 @@ class MainWindow(QMainWindow):
     def __init__(self, settings_manager):
         super().__init__()
         self.settings_manager = settings_manager
+        
+        # Connect global hotkey signal
+        self.request_open_add_dialog.connect(self.add_notification)
         
         # Set Window Icon
         self.logo_path = os.path.join(os.path.dirname(__file__), "images", "logo.ico")
@@ -427,17 +431,29 @@ class MainWindow(QMainWindow):
         self.settings_manager.set_setting("shortcut", shortcut_str)
         self.setup_global_shortcuts()
 
+    request_open_add_dialog = pyqtSignal()
+
     def setup_global_shortcuts(self):
         # Clean old shortcut if exists
-        if hasattr(self, 'add_shortcut_obj'):
-            self.add_shortcut_obj.setEnabled(False)
-            self.add_shortcut_obj.deleteLater()
+        try:
+            keyboard.unhook_all_hotkeys()
+        except:
+            pass
             
         shortcut_str = self.settings_manager.get_setting("shortcut", "Ctrl+Shift+A")
-        # Note: This QShortcut works when window is focused. 
-        # For a true system-wide global shortcut on Windows, we could use RegisterHotKey.
-        self.add_shortcut_obj = QShortcut(QKeySequence(shortcut_str), self)
-        self.add_shortcut_obj.activated.connect(self.add_notification)
+        
+        if not shortcut_str or shortcut_str.strip() == "":
+            return
+
+        # Convert to keyboard library format
+        # QKeySequence uses "+" separator which acts well with keyboard lib
+        hotkey = shortcut_str.lower().replace("meta", "windows")
+        
+        try:
+            # use a lambda or direct emit to ensure it works
+            keyboard.add_hotkey(hotkey, self.request_open_add_dialog.emit)
+        except Exception as e:
+            print(f"Failed to set global hotkey '{hotkey}': {e}")
 
     def backup_data(self):
         file_path, _ = QFileDialog.getSaveFileName(
