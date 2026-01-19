@@ -7,9 +7,9 @@
             "freq": "once",
             "time": "2026-01-19T16:41:05.216000",
             "repeat_min": 1,
-            "active": false,
+            "active": true,
             "created_at": "2026-01-19T16:41:07.640874",
-            "updated_at": "2026-01-19T16:41:07.640874",
+            "updated_at": "2026-01-19T19:32:09.855995",
             "last_triggered": "2026-01-19T16:41:07.972715"
         },
         {
@@ -22,35 +22,63 @@
             "active": true,
             "created_at": "2026-01-19T18:48:18.274895",
             "updated_at": "2026-01-19T18:48:18.274895",
-            "last_triggered": "2026-01-19T19:09:12.917181"
+            "last_triggered": "2026-01-19T19:30:48.285132"
         },
         {
             "title": "ok\t\ngoôd",
             "content": "ok em yêu",
             "type": "info",
+            "icon": "DEFAULT",
             "freq": "once",
-            "time": "2026-01-19T19:21:53.975000",
+            "time": "2026-01-19T19:47:53.975000",
             "repeat_min": 1,
             "active": false,
             "created_at": "2026-01-19T19:22:04.869531",
-            "updated_at": "2026-01-19T19:22:04.869531",
-            "last_triggered": "2026-01-19T19:22:05.775462"
+            "updated_at": "2026-01-19T19:47:58.429780",
+            "last_triggered": "2026-01-19T19:48:05.517599"
         },
         {
             "title": "Đi đón con",
             "content": "Đi đón con",
             "type": "danger",
+            "icon": "📅",
             "freq": "once",
             "time": "2026-01-19T19:23:13.113000",
             "repeat_min": 1,
-            "active": false,
+            "active": true,
             "created_at": "2026-01-19T19:22:28.308363",
-            "updated_at": "2026-01-19T19:22:28.308363",
-            "last_triggered": "2026-01-19T19:23:15.779942"
+            "updated_at": "2026-01-19T19:47:45.079408",
+            "last_triggered": "2026-01-19T19:31:18.286811"
+        },
+        {
+            "title": "careful",
+            "content": "carefulcarefulcarefulcareful",
+            "type": "info",
+            "icon": "💪",
+            "freq": "once",
+            "time": "2026-01-19T19:31:40.680000",
+            "repeat_min": 1,
+            "active": true,
+            "created_at": "2026-01-19T19:31:08.891048",
+            "updated_at": "2026-01-19T19:47:43.691728",
+            "last_triggered": "2026-01-19T19:31:48.284785"
+        },
+        {
+            "title": "ccc",
+            "content": "cssc",
+            "type": "info",
+            "icon": "DEFAULT",
+            "freq": "once",
+            "time": "2026-01-19T19:33:01.861000",
+            "repeat_min": 1,
+            "active": true,
+            "created_at": "2026-01-19T19:32:06.333947",
+            "updated_at": "2026-01-19T19:46:10.013520",
+            "last_triggered": "2026-01-19T19:33:08.298466"
         }
     ],
     "settings": {
-        "theme": "default",
+        "theme": "pink",
         "language": "vi_VN",
         "autostart": true,
         "shortcut": "Alt+K"

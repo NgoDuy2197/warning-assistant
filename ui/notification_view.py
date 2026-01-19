@@ -6,7 +6,7 @@ import ui.styles as styles
 import os
 
 class NotificationPopup(QWidget):
-    def __init__(self, title, content, notif_type="info"):
+    def __init__(self, title, content, notif_type="info", icon=None):
         super().__init__()
         self.setWindowTitle(title)
         self.setWindowFlags(Qt.WindowType.FramelessWindowHint | Qt.WindowType.WindowStaysOnTopHint | Qt.WindowType.Tool)
@@ -30,7 +30,13 @@ class NotificationPopup(QWidget):
         header_layout = QHBoxLayout()
         icon_path = os.path.join(os.path.dirname(__file__), "images", "logo.png")
         
-        if os.path.exists(icon_path):
+        # Priority: Custom Icon > Logo File > Default Type Icon
+        use_custom_icon = icon and icon != "DEFAULT"
+        
+        if use_custom_icon:
+            icon_label = QLabel(icon)
+            icon_label.setStyleSheet("font-size: 32px;")
+        elif os.path.exists(icon_path):
             icon_label = QLabel()
             pixmap = QIcon(icon_path).pixmap(32, 32)
             icon_label.setPixmap(pixmap)

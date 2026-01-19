@@ -25,8 +25,30 @@ class AddNotifDialog(QDialog):
         layout = QVBoxLayout(self)
         layout.setSpacing(12)
         
-        # Title
-        layout.addWidget(QLabel(translator.t("label_title")))
+        # Icon & Title Layout
+        title_layout = QHBoxLayout()
+        title_layout.setContentsMargins(0, 0, 0, 0)
+        
+        # Icon Selection
+        self.icon_combo = QComboBox()
+        self.icon_combo.setFixedSize(60, 40)
+        self.icon_combo.setStyleSheet("font-size: 20px;")
+        
+        self.EMOJI_OPTIONS = ["DEFAULT", "⏰", "📅", "📝", "✅", "⚠️", "🔥", "💡", "💰", "🎉", "✈️", "🍔", "💊", "💪", "🏠", "🚫"]
+        self.icon_combo.addItem("", "DEFAULT") # Default item
+        for emo in self.EMOJI_OPTIONS[1:]:
+            self.icon_combo.addItem(emo, emo)
+            
+        title_layout.addWidget(self.icon_combo)
+        
+        # Title Label
+        title_wrapper = QVBoxLayout()
+        title_wrapper.setSpacing(2)
+        title_wrapper.addWidget(QLabel(translator.t("label_title")))
+        title_layout.addLayout(title_wrapper)
+        
+        layout.addLayout(title_layout)
+        
         self.title_input = QTextEdit()
         self.title_input.setMaximumHeight(80)
         layout.addWidget(self.title_input)
@@ -143,6 +165,10 @@ class AddNotifDialog(QDialog):
             # Fix for daily time format HH:mm
             t = datetime.strptime(data.get("time"), "%H:%M")
             self.time_picker.setTime(QDateTime.currentDateTime().replace(hour=t.hour, minute=t.minute).time())
+            
+        icon_str = data.get("icon", "")
+        idx = self.icon_combo.findData(icon_str)
+        if idx >= 0: self.icon_combo.setCurrentIndex(idx)
         elif freq == "repeat":
             self.repeat_spin.setValue(data.get("repeat_min", 1))
         
@@ -167,6 +193,7 @@ class AddNotifDialog(QDialog):
             "title": self.title_input.toPlainText().strip(),
             "content": self.content_input.toPlainText(),
             "type": self.type_combo.currentData(),
+            "icon": self.icon_combo.currentData(),
             "freq": freq,
             "time": time_val,
             "repeat_min": self.repeat_spin.value(),
@@ -539,6 +566,12 @@ class MainWindow(QMainWindow):
         indicator.setFixedSize(6, 40)
         indicator.setStyleSheet(f"background-color: {accent}; border-radius: 3px;")
         layout.addWidget(indicator)
+        
+        # Emoji Icon (if present)
+        if notif.get("icon") and notif.get("icon") != "DEFAULT":
+            emoji_lbl = QLabel(notif["icon"])
+            emoji_lbl.setStyleSheet("font-size: 24px; margin-right: 5px;")
+            layout.addWidget(emoji_lbl)
         
         info_layout = QVBoxLayout()
         info_layout.setSpacing(2)
