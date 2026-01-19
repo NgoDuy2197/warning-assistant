@@ -1,5 +1,18 @@
 {
-    "notifications": [],
+    "notifications": [
+        {
+            "title": "sss",
+            "content": "ssss",
+            "type": "info",
+            "freq": "once",
+            "time": "2026-01-19T16:41:05.216000",
+            "repeat_min": 1,
+            "active": false,
+            "created_at": "2026-01-19T16:41:07.640874",
+            "updated_at": "2026-01-19T16:41:07.640874",
+            "last_triggered": "2026-01-19T16:41:07.972715"
+        }
+    ],
     "settings": {
         "theme": "default",
         "language": "vi_VN",

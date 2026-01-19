@@ -40,5 +40,8 @@
     "msg_backup_success": "数据备份成功！",
     "msg_import_confirm": "当前数据将被替换。您确定吗？",
     "msg_backup_title": "选择备份位置",
-    "msg_import_title": "选择要导入的数据文件"
+    "msg_import_title": "选择要导入的数据文件",
+    "msg_confirm_title": "确认",
+    "msg_success_title": "成功",
+    "msg_error_title": "错误"
 }

@@ -80,11 +80,31 @@ class AddNotifDialog(QDialog):
         btn_layout = QHBoxLayout()
         btn_layout.setContentsMargins(0, 10, 0, 0)
         save_btn = QPushButton(translator.t("btn_save"))
+        save_btn.setCursor(Qt.CursorShape.PointingHandCursor)
         save_btn.clicked.connect(self.accept)
         cancel_btn = QPushButton(translator.t("btn_cancel"))
+        cancel_btn.setFixedSize(50, 50)
+        cancel_btn.setCursor(Qt.CursorShape.PointingHandCursor)
         cancel_btn.clicked.connect(self.reject)
+        # Style cancel button with red background
+        cancel_btn.setStyleSheet("""
+            QPushButton {
+                background-color: #FFFFFF; 
+                color: #B91C1C; 
+                border-radius: 14px; 
+                border: 2px solid white;
+                font-size: 12px;
+                margin: 1px;
+                padding: 1px;
+            }
+            QPushButton:hover { background-color: #FECACA; }
+        """)
+        
+        btn_layout.addStretch()
         btn_layout.addWidget(cancel_btn)
         btn_layout.addWidget(save_btn)
+        btn_layout.addSpacing(5)
+        
         layout.addLayout(btn_layout)
 
         if initial_data:
@@ -424,12 +444,15 @@ class MainWindow(QMainWindow):
         if file_path:
             try:
                 shutil.copy2(self.settings_manager.DATA_FILE, file_path)
-                QMessageBox.information(self, "Success", translator.t("msg_backup_success"))
+                QMessageBox.information(self, translator.t("msg_success_title"), translator.t("msg_backup_success"))
             except Exception as e:
-                QMessageBox.critical(self, "Error", f"Backup failed: {str(e)}")
+                QMessageBox.critical(self, translator.t("msg_error_title"), f"Backup failed: {str(e)}")
 
     def import_data(self):
-        if QMessageBox.question(self, "Confirm", translator.t("msg_import_confirm")) == QMessageBox.StandardButton.Yes:
+        reply = QMessageBox.question(self, translator.t("msg_confirm_title"), translator.t("msg_import_confirm"), 
+                                     QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No)
+        
+        if reply == QMessageBox.StandardButton.Yes:
             file_path, _ = QFileDialog.getOpenFileName(
                 self, translator.t("msg_import_title"), "", "Text Files (*.txt)"
             )
@@ -439,9 +462,9 @@ class MainWindow(QMainWindow):
                     # Reload data
                     self.settings_manager.data = self.settings_manager._load_data()
                     self.load_notification_list()
-                    QMessageBox.information(self, "Success", translator.t("msg_import_success"))
+                    QMessageBox.information(self, translator.t("msg_success_title"), translator.t("msg_import_success"))
                 except Exception as e:
-                    QMessageBox.critical(self, "Error", f"Import failed: {str(e)}")
+                    QMessageBox.critical(self, translator.t("msg_error_title"), f"Import failed: {str(e)}")
 
     def resizeEvent(self, event):
         super().resizeEvent(event)
