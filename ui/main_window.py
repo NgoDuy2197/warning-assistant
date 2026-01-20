@@ -703,7 +703,20 @@ class MainWindow(QMainWindow):
         if 0 <= index < len(notifs):
             dialog = AddNotifDialog(self, initial_data=notifs[index])
             if dialog.exec():
-                self.settings_manager.update_notification(index, dialog.get_data())
+                data = dialog.get_data()
+                
+                # Auto-adjust time if "once" and in past
+                if data.get('freq') == 'once':
+                    try:
+                        t = datetime.fromisoformat(data['time'])
+                        if t < datetime.now():
+                            new_time = datetime.now() + timedelta(minutes=1)
+                            data['time'] = new_time.isoformat()
+                            data['last_triggered'] = None # Ensure it triggers
+                    except:
+                        pass
+
+                self.settings_manager.update_notification(index, data)
                 self.load_notification_list()
 
     def toggle_notification(self, index):
