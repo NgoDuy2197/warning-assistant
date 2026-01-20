@@ -12,8 +12,9 @@ def main():
     # Fix Taskbar Icon on Windows
     myappid = 'einvoice.warning.assistant.1.0'
     try:
-        ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
-    except ImportError:
+        if os.name == 'nt':
+            ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
+    except (ImportError, AttributeError):
         pass
 
     app = QApplication(sys.argv)

@@ -70,4 +70,50 @@ Ví dụ nội dung file:
 # TODO LIST
 - [ ] Pick date đẹp hơn
 - [ ] Nút điều chỉnh thời gian
-- [v] Chỉnh global shortcut
+- [x] Chỉnh global shortcut
+
+## 🛠 Cài đặt và Phát triển
+
+### 1. Yêu cầu hệ thống
+- Python 3.8+
+- Git
+
+### 2. Cài đặt môi trường
+Clone source code về máy:
+```bash
+git clone https://github.com/NgoDuy2197/warning-assistant.git
+cd warning-assistant
+```
+
+Cài đặt các thư viện cần thiết:
+```bash
+pip install -r requirements.txt
+```
+
+### 3. Đóng gói ứng dụng (Build App)
+
+#### Cho Windows:
+Chạy file `build_app.bat`
+Sau khi build xong, file `.exe` sẽ nằm trong thư mục `dist`.
+
+#### Cho macOS:
+Cấp quyền thực thi cho script build (nếu cần):
+```bash
+chmod +x build_app_mac.sh
+```
+
+Chạy script build:
+```bash
+./build_app_mac.sh
+```
+
+Sau khi build, bạn sẽ nhận được file `Assistant.app` trong thư mục `dist`.
+
+**Lưu ý trên macOS:**
+- Do sử dụng thư viện `keyboard` để bắt global shortcut, ứng dụng có thể yêu cầu quyền **Accessibility** (Trợ năng) để hoạt động chính xác.
+```
+Cách cấp quyền (macOS)
+System Settings → Privacy & Security → Accessibility → bật cho app (WarningAssistant.app).
+Nếu app không hiện: Add (+) rồi trỏ tới file .app, restart app.
+```
+- Nếu gặp lỗi icon, hãy thử chuyển đổi file `logo.png` sang định dạng `.icns` chuẩn của Apple.
