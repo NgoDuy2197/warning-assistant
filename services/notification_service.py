@@ -72,7 +72,7 @@ class NotificationService(QObject):
             if p.windowTitle() == notif["title"]:
                 return # Don't trigger if already showing
         
-        popup = NotificationPopup(notif["title"], notif["content"], notif["type"], notif.get("icon"))
+        popup = NotificationPopup(notif["title"], notif["content"], notif["type"], notif.get("icon"), notif.get("color"))
         popup.show_animated()
         self.active_popups.append(popup)
         self.notification_triggered.emit(notif)

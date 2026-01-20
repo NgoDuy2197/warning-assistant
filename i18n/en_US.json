@@ -43,5 +43,6 @@
     "msg_import_title": "Select Data File to Import",
     "msg_confirm_title": "Confirm",
     "msg_success_title": "Success",
-    "msg_error_title": "Error"
+    "msg_error_title": "Error",
+    "label_color": "Color"
 }

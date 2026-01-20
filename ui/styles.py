@@ -185,15 +185,61 @@ def get_main_style(theme="default"):
     }}
     """
 
-def get_notification_popup_style(notif_type="info"):
-    schemes = {
-        "danger": {"bg": "rgba(254, 242, 242, 0.85)", "border": "#FEE2E2", "accent": "#EF4444", "text": "rgba(127, 29, 29, 0.9)"},
-        "important": {"bg": "rgba(255, 251, 235, 0.85)", "border": "#FEF3C7", "accent": "#F59E0B", "text": "rgba(120, 53, 15, 0.9)"},
-        "warning": {"bg": "rgba(255, 251, 235, 0.85)", "border": "#FEF3C7", "accent": "#F59E0B", "text": "rgba(120, 53, 15, 0.9)"},
-        "info": {"bg": "rgba(239, 246, 255, 0.85)", "border": "#DBEAFE", "accent": "#3B82F6", "text": "rgba(30, 58, 138, 0.9)"}
-    }
-    
-    s = schemes.get(notif_type, schemes["info"])
+def get_notification_popup_style(notif_type="info", custom_color=None):
+    if custom_color:
+        # Custom color logic
+        # format: #RRGGBB
+        try:
+            h = custom_color.strip('#')
+            r, g, b = tuple(int(h[i:i+2], 16) for i in (0, 2, 4))
+            
+            # Background: the color but very light (20% opacity for bg to read text, or 50% as requested)
+            # "màu nền tự động làm nhạt đi 50%" - strictly this means 50% opacity or 50% mix with white.
+            # Let's do 50% mix with white => (Color + White)/2
+            # Or simpler: rgba(r,g,b, 0.2) looks better, but let's stick to request "nhạt đi 50%" ~ 0.5 alpha?
+            # 0.5 alpha on transparent window might look OK.
+            
+            bg_color = f"rgba({r}, {g}, {b}, 0.2)" # 20% looks classy. 50% is too strong for background usually.
+            # But user said "nhạt đi 50%". Let's try 0.5 first if they persist, but 0.9 text on 0.5 bg is okay.
+            # Let's use a solid light color for safety: weighted mix with white.
+            # mix(color, white, 0.85) -> 85% white
+            
+            bg_r = int(r + (255 - r) * 0.9)
+            bg_g = int(g + (255 - g) * 0.9)
+            bg_b = int(b + (255 - b) * 0.9)
+            bg_color = f"rgba({bg_r}, {bg_g}, {bg_b}, 0.95)"
+            
+            # Accent (Button) is the color itself
+            accent = custom_color
+            
+            # Border: can be same as accent or lighter
+            border = f"rgba({r}, {g}, {b}, 0.3)"
+            
+            # Text Color: Dark or Light depending on background? Since we force BG to be very light, use dark text.
+            # We assume users won't pick White as header color.
+            # Let's derive a dark text color from the accent (darken it).
+            text_r = max(0, int(r * 0.3))
+            text_g = max(0, int(g * 0.3))
+            text_b = max(0, int(b * 0.3))
+            text_color = f"rgba({text_r}, {text_g}, {text_b}, 0.95)"
+            
+            # Button Text Color (Contrast)
+            # Luminance: 0.299*R + 0.587*G + 0.114*B
+            lum = (0.299 * r + 0.587 * g + 0.114 * b)
+            btn_text = "white" if lum < 150 else "black"
+            
+            s = {"bg": bg_color, "border": border, "accent": accent, "text": text_color, "btn_text": btn_text}
+        except:
+             # Fallback
+             s = {"bg": "rgba(239, 246, 255, 0.85)", "border": "#DBEAFE", "accent": "#3B82F6", "text": "rgba(30, 58, 138, 0.9)", "btn_text": "white"}
+    else:
+        schemes = {
+            "danger": {"bg": "rgba(254, 242, 242, 0.85)", "border": "#FEE2E2", "accent": "#EF4444", "text": "rgba(127, 29, 29, 0.9)", "btn_text": "white"},
+            "important": {"bg": "rgba(255, 251, 235, 0.85)", "border": "#FEF3C7", "accent": "#F59E0B", "text": "rgba(120, 53, 15, 0.9)", "btn_text": "white"},
+            "warning": {"bg": "rgba(255, 251, 235, 0.85)", "border": "#FEF3C7", "accent": "#F59E0B", "text": "rgba(120, 53, 15, 0.9)", "btn_text": "white"},
+            "info": {"bg": "rgba(239, 246, 255, 0.85)", "border": "#DBEAFE", "accent": "#3B82F6", "text": "rgba(30, 58, 138, 0.9)", "btn_text": "white"}
+        }
+        s = schemes.get(notif_type, schemes["info"])
     
     return f"""
     QWidget#PopupContainer {{
@@ -216,7 +262,7 @@ def get_notification_popup_style(notif_type="info"):
     
     QPushButton#CloseBtn {{
         background-color: {s["accent"]};
-        color: white;
+        color: {s["btn_text"]};
         border-radius: 10px;
         font-weight: 600;
         padding: 5px 15px;

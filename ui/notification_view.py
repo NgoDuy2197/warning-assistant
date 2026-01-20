@@ -7,7 +7,7 @@ import os
 import sys
 
 class NotificationPopup(QWidget):
-    def __init__(self, title, content, notif_type="info", icon=None):
+    def __init__(self, title, content, notif_type="info", icon=None, custom_color=None):
         super().__init__()
         self.setWindowTitle(title)
         self.setWindowFlags(Qt.WindowType.FramelessWindowHint | Qt.WindowType.WindowStaysOnTopHint | Qt.WindowType.Tool)
@@ -21,7 +21,7 @@ class NotificationPopup(QWidget):
         self.layout = QVBoxLayout(self)
         self.container = QWidget()
         self.container.setObjectName("PopupContainer")
-        self.container.setStyleSheet(styles.get_notification_popup_style(notif_type))
+        self.container.setStyleSheet(styles.get_notification_popup_style(notif_type, custom_color))
         
         container_layout = QVBoxLayout(self.container)
         container_layout.setContentsMargins(20, 20, 20, 15)

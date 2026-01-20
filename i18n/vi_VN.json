@@ -43,5 +43,6 @@
     "msg_import_title": "Chọn file dữ liệu để nhập",
     "msg_confirm_title": "Xác nhận",
     "msg_success_title": "Thành công",
-    "msg_error_title": "Lỗi"
+    "msg_error_title": "Lỗi",
+    "label_color": "Màu sắc"
 }

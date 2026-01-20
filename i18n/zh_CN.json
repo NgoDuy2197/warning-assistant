@@ -43,5 +43,6 @@
     "msg_import_title": "选择要导入的数据文件",
     "msg_confirm_title": "确认",
     "msg_success_title": "成功",
-    "msg_error_title": "错误"
+    "msg_error_title": "错误",
+    "label_color": "颜色"
 }

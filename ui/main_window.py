@@ -3,10 +3,10 @@ from PyQt6.QtWidgets import (QMainWindow, QWidget, QVBoxLayout, QHBoxLayout,
                              QLabel, QComboBox, QCheckBox, QDialog, QLineEdit, 
                              QTextEdit, QDateTimeEdit, QSpinBox, QTimeEdit, 
                              QSystemTrayIcon, QMenu, QApplication, QMessageBox,
-                             QKeySequenceEdit, QFileDialog)
+                             QKeySequenceEdit, QFileDialog, QColorDialog)
 from PyQt6.QtCore import Qt, QDateTime, QSize, QTimer, pyqtSignal
 import keyboard
-from PyQt6.QtGui import QIcon, QAction, QKeySequence, QShortcut
+from PyQt6.QtGui import QIcon, QAction, QKeySequence, QShortcut, QColor
 import shutil
 from i18n.translator import translator
 from services.autostart_service import AutostartService
@@ -60,14 +60,41 @@ class AddNotifDialog(QDialog):
         self.content_input.setMaximumHeight(100)
         layout.addWidget(self.content_input)
         
-        # Type
-        layout.addWidget(QLabel(translator.t("label_type")))
+        # Type & Color
+        type_layout = QHBoxLayout()
+        type_layout.setContentsMargins(0, 0, 0, 0)
+        
+        type_wrapper = QVBoxLayout()
+        type_wrapper.setSpacing(2)
+        type_wrapper.addWidget(QLabel(translator.t("label_type")))
+        
         self.type_combo = QComboBox()
         self.type_combo.addItem(translator.t("notif_type_info"), "info")
         self.type_combo.addItem(translator.t("notif_type_warning"), "warning")
         self.type_combo.addItem(translator.t("notif_type_important"), "important")
         self.type_combo.addItem(translator.t("notif_type_danger"), "danger")
-        layout.addWidget(self.type_combo)
+        type_wrapper.addWidget(self.type_combo) # Add to wrapper
+        
+        type_layout.addLayout(type_wrapper)
+        
+        # Color Picker Button
+        self.custom_color = None
+        self.btn_color = QPushButton()
+        self.btn_color.setFixedSize(50, 40) # Match height roughly with combo
+        self.btn_color.setCursor(Qt.CursorShape.PointingHandCursor)
+        self.btn_color.clicked.connect(self.pick_color)
+        self.btn_color.setStyleSheet("border-radius: 15px; border: 1px solid #eee !important; background-color: #eee;")
+        
+        # Color Label Wrapper
+        color_wrapper = QVBoxLayout()
+        color_wrapper.setSpacing(2)
+        color_wrapper.addWidget(QLabel(translator.t("label_color")))
+        color_wrapper.addWidget(self.btn_color)
+        
+        type_layout.addSpacing(10)
+        type_layout.addLayout(color_wrapper)
+        
+        layout.addLayout(type_layout)
         
         # Frequency
         layout.addWidget(QLabel(translator.t("label_frequency")))
@@ -172,8 +199,19 @@ class AddNotifDialog(QDialog):
         if idx >= 0: self.icon_combo.setCurrentIndex(idx)
         elif freq == "repeat":
             self.repeat_spin.setValue(data.get("repeat_min", 1))
+            
+        # Load Color
+        self.custom_color = data.get("color")
+        if self.custom_color:
+            self.btn_color.setStyleSheet(f"background-color: {self.custom_color}; border-radius: 15px; border: 1px solid #eee;")
         
         self.on_freq_changed()
+
+    def pick_color(self):
+        color = QColorDialog.getColor()
+        if color.isValid():
+            self.custom_color = color.name()
+            self.btn_color.setStyleSheet(f"background-color: {self.custom_color}; border-radius: 15px; border: 1px solid #eee;")
 
     def on_freq_changed(self):
         freq = self.freq_combo.currentData()
@@ -193,8 +231,11 @@ class AddNotifDialog(QDialog):
         data = {
             "title": self.title_input.toPlainText().strip(),
             "content": self.content_input.toPlainText(),
+            "title": self.title_input.toPlainText().strip(),
+            "content": self.content_input.toPlainText(),
             "type": self.type_combo.currentData(),
             "icon": self.icon_combo.currentData(),
+            "color": self.custom_color,
             "freq": freq,
             "time": time_val,
             "repeat_min": self.repeat_spin.value(),
@@ -333,6 +374,7 @@ class MainWindow(QMainWindow):
                 background-color: #3B82F6;
                 color: white;
                 font-size: 32px;
+                border: 3px solid #fff;
                 border-radius: 28px;
                 padding: 0px;
                 margin: 0px;
