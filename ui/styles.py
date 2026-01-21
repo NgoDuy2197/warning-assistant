@@ -102,14 +102,19 @@ def get_main_style(theme="default"):
     QComboBox::drop-down {{
         border: none;
         width: 30px;
+        subcontrol-position: right center;
     }}
     QComboBox::down-arrow {{
-        image: none; /* Can add a custom arrow icon here */
-        border-left: 5px solid transparent;
-        border-right: 5px solid transparent;
-        border-top: 5px solid {text_sub};
-        margin-right: 10px;
+        image: url('ui/images/down-arrow.png');  /* DuyHere: Đổi thành url('path/to/icon.png') nếu muốn dùng icon */
+        width: 24px;     /* DuyHere: Kích thước mũi tên */
+        height: 24px;
+        border: 0px solid #fff;  /* DuyHere: Màu mũi tên */
+        padding-right: 5px;
     }}
+    QComboBox:hover::down-arrow {{
+        border-top-color: {primary};
+    }}
+    
     QComboBox QAbstractItemView {{
         border: 1px solid {border};
         border-radius: 8px;
@@ -120,25 +125,82 @@ def get_main_style(theme="default"):
         padding: 5px;
     }}
 
-    /* Modern SpinBox Styling - Using symbols if images are provided by user */
+    /* Modern SpinBox Styling */
     QSpinBox::up-button, QDateTimeEdit::up-button, QTimeEdit::up-button {{
+        subcontrol-origin: border;
+        subcontrol-position: top right;
         width: 28px;
         background: {bg};
         border-left: 1px solid {border};
         border-top-right-radius: 10px;
-        image: url(ui/images/plus.png);
     }}
     QSpinBox::down-button, QDateTimeEdit::down-button, QTimeEdit::down-button {{
+        subcontrol-origin: border;
+        subcontrol-position: bottom right;
         width: 28px;
         background: {bg};
         border-left: 1px solid {border};
         border-bottom-right-radius: 10px;
-        image: url(ui/images/minus.png);
     }}
     
-    /* Ensuring symbols are used specifically */
-    QSpinBox::up-arrow, QDateTimeEdit::up-arrow, QTimeEdit::up-arrow {{ image: url(ui/images/plus.png); width: 12px; height: 12px; }}
-    QSpinBox::down-arrow, QDateTimeEdit::down-arrow, QTimeEdit::down-arrow {{ image: url(ui/images/minus.png); width: 12px; height: 12px; }}
+    QSpinBox::up-button:hover, QDateTimeEdit::up-button:hover, QTimeEdit::up-button:hover {{
+        background: {border};
+    }}
+    QSpinBox::down-button:hover, QDateTimeEdit::down-button:hover, QTimeEdit::down-button:hover {{
+        background: {border};
+    }}
+    
+    QSpinBox::up-arrow, QDateTimeEdit::up-arrow, QTimeEdit::up-arrow {{
+        image: url('ui/images/up.png');  /* DuyHere: Đổi thành url('path/to/icon.png') nếu muốn dùng icon */
+        width: 24px;     /* DuyHere: Kích thước icon giảm */
+        height: 24px;
+        border-bottom: 0px solid #fff;  /* DuyHere: Màu mũi tên tăng */
+    }}
+    QSpinBox::up-arrow:hover, QDateTimeEdit::up-arrow:hover, QTimeEdit::up-arrow:hover {{
+        border-bottom-color: {primary};
+    }}
+    
+    QSpinBox::down-arrow, QDateTimeEdit::down-arrow, QTimeEdit::down-arrow {{
+        image: url('ui/images/down.png');  /* DuyHere: Đổi thành url('path/to/icon.png') nếu muốn dùng icon */
+        width: 24px;     /* DuyHere: Kích thước icon giảm */
+        height: 24px;
+        border-top: 0px solid #fff;  /* DuyHere: Màu mũi tên giảm */
+    }}
+    QSpinBox::down-arrow:hover, QDateTimeEdit::down-arrow:hover, QTimeEdit::down-arrow:hover {{
+        border-top-color: {primary};
+    }}
+
+
+    QDateTimeEdit {{
+        padding-right: 28px;
+    }}
+
+    QDateTimeEdit::drop-down {{
+        subcontrol-origin: padding;
+        subcontrol-position: top right;
+        width: 24px;
+        border: none;
+        padding-right: 5px;
+        background: transparent;
+    }}
+
+    QDateTimeEdit::down-arrow {{
+        image: url('ui/images/down-arrow.png');  /* DuyHere: Đổi thành url('path/to/icon.png') nếu muốn dùng icon */
+        width: 24px;     /* DuyHere: Kích thước icon giảm */
+        height: 24px;
+        border-top: 0px solid #fff;  /* DuyHere: Màu mũi tên giảm */
+    }}
+    QCalendarWidget QToolButton {{
+        background: transparent;
+    }}
+
+    QCalendarWidget QAbstractItemView:enabled:selected {{
+        background-color: #3B82F6;
+        color: white;
+        border-radius: 6px;
+    }}
+
+
 
     /* Floating Action Button */
     QPushButton#FloatingAddBtn {{
