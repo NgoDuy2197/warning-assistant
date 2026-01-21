@@ -3,7 +3,7 @@ from PyQt6.QtWidgets import (QMainWindow, QWidget, QVBoxLayout, QHBoxLayout,
                              QLabel, QComboBox, QCheckBox, QDialog, QLineEdit, 
                              QTextEdit, QDateTimeEdit, QSpinBox, QTimeEdit, 
                              QSystemTrayIcon, QMenu, QApplication, QMessageBox,
-                             QKeySequenceEdit, QFileDialog, QColorDialog)
+                             QKeySequenceEdit, QFileDialog, QColorDialog, QSizePolicy)
 from PyQt6.QtCore import Qt, QDateTime, QSize, QTimer, pyqtSignal
 import keyboard
 from PyQt6.QtGui import QIcon, QAction, QKeySequence, QShortcut, QColor
@@ -32,10 +32,10 @@ class AddNotifDialog(QDialog):
         
         # Icon Selection
         self.icon_combo = QComboBox()
-        self.icon_combo.setFixedSize(60, 40)
+        self.icon_combo.setFixedSize(80, 40)
         self.icon_combo.setStyleSheet("font-size: 20px;")
         
-        self.EMOJI_OPTIONS = ["DEFAULT", "⏰", "📅", "📝", "✅", "⚠️", "🔥", "💡", "💰", "🎉", "✈️", "🍔", "💊", "💪", "🏠", "🚫"]
+        self.EMOJI_OPTIONS = ["DEFAULT", "❤️", "📌", "⭐", "⏰", "📅", "📝", "✅", "⚠️", "🔥", "💡", "💰", "🎉", "✈️", "🍔", "💊", "💪", "🏠", "🚫"]
         self.icon_combo.addItem("", "DEFAULT") # Default item
         for emo in self.EMOJI_OPTIONS[1:]:
             self.icon_combo.addItem(emo, emo)

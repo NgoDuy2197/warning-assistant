@@ -196,8 +196,24 @@ def get_main_style(theme="default"):
 
     QCalendarWidget QAbstractItemView:enabled:selected {{
         background-color: #3B82F6;
-        color: white;
+        color: black;
         border-radius: 6px;
+    }}
+    QCalendarWidget QWidget#qt_calendar_navigationbar {{
+    min-height: 36px;
+    background: #2563EB;
+    }}
+
+    QCalendarWidget QSpinBox {{
+    min-width: 70px;
+    padding: 4px 6px;
+    background: white;
+    }}
+
+    QCalendarWidget QSpinBox::up-button,
+    QCalendarWidget QSpinBox::down-button {{
+        subcontrol-origin: border;
+        width: 14px;
     }}
 
 
